@@ -1,11 +1,14 @@
 package com.example.demo.dao;
 
 import com.example.demo.model.Person;
+import jdk.jfr.Registered;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Repository("fakeDao") //can also do @Repository
 public class FakePersonDataAccessService implements PersonDao{
     private static List<Person> DB = new ArrayList<>();
 
