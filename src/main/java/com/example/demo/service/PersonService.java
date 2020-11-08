@@ -12,6 +12,6 @@ public class PersonService {
     }
 
     public int addPerson(Person person) {
-        return personDao.insertPerson(person);
+        return personDao.insertPerson(person.getId(), person);
     }
 }
