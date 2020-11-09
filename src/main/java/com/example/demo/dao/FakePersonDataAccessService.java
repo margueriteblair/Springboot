@@ -50,6 +50,7 @@ public class FakePersonDataAccessService implements PersonDao{
                         DB.set(indexOfPersonToDelete, person);
                         return 1;
                     }
+                    return 0;
                 })
                 .orElse(0);
     }
