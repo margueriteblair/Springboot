@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gorest.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,9 +23,9 @@ public class Controller {
         return restTemplate.getForObject("https://gorest.co.in/public/v1/users/{id}", String.class);
     }
 
-    @PostMapping("users/")
+    @PostMapping(value = "users/", consumes = "application/json", produces = "application/json")
     public User createUser(@RequestBody User user){
         User newUser = restTemplate.postForObject("https://gorest.co.in/public/v1/users", user, User.class);
-        return user;
+        return newUser;
     }
 }
