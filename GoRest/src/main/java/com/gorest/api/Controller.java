@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.gorest.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -25,10 +26,7 @@ public class Controller {
 
     @PostMapping("users/")
     public User createUser(@RequestBody User user){
-        if (user == null) {
-            throw new IllegalArgumentException("User must not be null & have all required fields");
-        } else {
-            return user;
-        }
+        User newUser = restTemplate.postForObject("https://gorest.co.in/public/v1/users", user, User.class);
+        return user;
     }
 }
