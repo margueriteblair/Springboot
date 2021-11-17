@@ -40,11 +40,8 @@ public class Controller {
                 String.class,
                 id
         );
-        if (response.getStatusCode() == HttpStatus.OK) {
-            return "worked";
-        } else {
-            return "req failed bitch";
-        }
+        System.out.println(response.getBody());
+        return response.getBody();
     }
 
     @PostMapping(value = "users/", consumes = "application/json", produces = "application/json")
