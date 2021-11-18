@@ -25,6 +25,11 @@ public class Controller {
     @Autowired
     RestTemplate restTemplate;
 
+    @GetMapping("/")
+    public String testRoute() {
+        return "The test worked!";
+    }
+
     @GetMapping(value = "/users/{id}")
     public String getUserById(@PathVariable("id") String id) throws JsonProcessingException {
         String url = "https://gorest.co.in/public/v1/users/{id}";
