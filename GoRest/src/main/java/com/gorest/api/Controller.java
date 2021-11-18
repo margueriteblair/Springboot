@@ -7,12 +7,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @RequestMapping("/public/v1")
@@ -25,9 +21,19 @@ public class Controller {
     @Autowired
     RestTemplate restTemplate;
 
-    @GetMapping("/")
+    @GetMapping("/test")
     public String testRoute() {
-        return "The test worked!";
+        return "The test getty worked!";
+    }
+
+    @PostMapping("/test")
+    public String testPostRoute() {
+        return "yes posty";
+    }
+
+    @GetMapping
+    public ResponseEntity<String> allUsers(RestTemplate restTemplate) {
+        return restTemplate.getForEntity("https://gorest.co.in/public/v1/users", String.class);
     }
 
     @GetMapping(value = "/users/{id}")
