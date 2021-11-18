@@ -44,9 +44,12 @@ public class Controller {
         return response.getBody();
     }
 
-    @PostMapping(value = "users/", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "users/", consumes = "application/json")
     public User createUser(@RequestBody User user){
         User newUser = restTemplate.postForObject("https://gorest.co.in/public/v1/users", user, User.class);
         return newUser;
     }
+
+    //need putmapping for updating
+    //need
 }
