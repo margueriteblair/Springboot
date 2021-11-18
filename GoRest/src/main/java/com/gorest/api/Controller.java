@@ -31,7 +31,7 @@ public class Controller {
         return "yes posty";
     }
 
-    @GetMapping
+    @GetMapping("/allUsers")
     public ResponseEntity<String> allUsers(RestTemplate restTemplate) {
         return restTemplate.getForEntity("https://gorest.co.in/public/v1/users", String.class);
     }
