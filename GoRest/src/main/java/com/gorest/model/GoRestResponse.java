@@ -9,6 +9,8 @@ public class GoRestResponse {
         this.data = data;
     }
 
+    public GoRestResponse() {};
+
 
     public Object getData() {
         return data;

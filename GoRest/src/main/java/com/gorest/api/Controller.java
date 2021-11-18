@@ -1,6 +1,7 @@
 package com.gorest.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.gorest.model.GoRestResponse;
 import com.gorest.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -21,10 +22,6 @@ public class Controller {
     @Autowired
     RestTemplate restTemplate;
 
-    @GetMapping("/test")
-    public String testRoute() {
-        return "The test getty worked!";
-    }
 
     @PostMapping("/test")
     public String testPostRoute() {
@@ -32,8 +29,8 @@ public class Controller {
     }
 
     @GetMapping("/allUsers")
-    public ResponseEntity<String> allUsers(RestTemplate restTemplate) {
-        return restTemplate.getForEntity("https://gorest.co.in/public/v1/users", String.class);
+    public GoRestResponse allUsers(RestTemplate restTemplate) {
+        return restTemplate.getForObject("https://gorest.co.in/public/v1/users", GoRestResponse.class);
     }
 
     @GetMapping(value = "/users/{id}")
