@@ -29,14 +29,19 @@ public class Controller {
     }
 
     @GetMapping("/allUsers")
-    public GoRestResponse allUsers(RestTemplate restTemplate) {
-        return restTemplate.getForObject("https://gorest.co.in/public/v1/users", GoRestResponse.class);
+    public Object allUsers(RestTemplate restTemplate) {
+        return restTemplate.getForObject("https://gorest.co.in/public/v1/users", GoRestResponse.class).getData();
     }
 
     @GetMapping("getUser/{id}")
     public Object getUser(RestTemplate restTemplate, @PathVariable("id") String id) {
-        String URL = "https://gorest.co.in/public/v1/users"+id;
+        String URL = "https://gorest.co.in/public/v1/users/"+id;
         return restTemplate.getForObject(URL, GoRestResponse.class).getData();
+    }
+
+    @DeleteMapping
+    public Object deleteUser(RestTemplate restTemplate, @PathVariable("id") String id) {
+        String URL =
     }
 
 //    @GetMapping(value = "/users/{id}")
