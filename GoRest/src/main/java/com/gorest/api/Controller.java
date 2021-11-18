@@ -39,9 +39,10 @@ public class Controller {
         return restTemplate.getForObject(URL, GoRestResponse.class).getData();
     }
 
-    @DeleteMapping
+    @DeleteMapping("delete/{id}")
     public Object deleteUser(RestTemplate restTemplate, @PathVariable("id") String id) {
-        String URL =
+        String URL = "https://gorest.co.in/public/v1/users/"+id;
+        return restTemplate.getForObject(URL, GoRestResponse.class).getData();
     }
 
 //    @GetMapping(value = "/users/{id}")
