@@ -33,24 +33,30 @@ public class Controller {
         return restTemplate.getForObject("https://gorest.co.in/public/v1/users", GoRestResponse.class);
     }
 
-    @GetMapping(value = "/users/{id}")
-    public String getUserById(@PathVariable("id") String id) throws JsonProcessingException {
-        String url = "https://gorest.co.in/public/v1/users/{id}";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-
-        HttpEntity request = new HttpEntity(headers);
-        ResponseEntity<String> response = restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                request,
-                String.class,
-                id
-        );
-        System.out.println(response.getBody());
-        return response.getBody();
+    @GetMapping("getUser/{id}")
+    public Object getUser(RestTemplate restTemplate, @PathVariable("id") String id) {
+        String URL = "https://gorest.co.in/public/v1/users"+id;
+        return restTemplate.getForObject(URL, GoRestResponse.class).getData();
     }
+
+//    @GetMapping(value = "/users/{id}")
+//    public String getUserById(@PathVariable("id") String id) throws JsonProcessingException {
+//        String url = "https://gorest.co.in/public/v1/users/{id}";
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.APPLICATION_JSON);
+//        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+//
+//        HttpEntity request = new HttpEntity(headers);
+//        ResponseEntity<String> response = restTemplate.exchange(
+//                url,
+//                HttpMethod.GET,
+//                request,
+//                String.class,
+//                id
+//        );
+//        System.out.println(response.getBody());
+//        return response.getBody();
+//    }
 
     @PostMapping(value = "users/", consumes = "application/json")
     public User createUser(@RequestBody User user){
