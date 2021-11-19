@@ -34,9 +34,14 @@ public class Controller {
     }
 
     @GetMapping("getUser/{id}")
-    public Object getUser(RestTemplate restTemplate, @PathVariable("id") String id) {
+    public String getUser(RestTemplate restTemplate, @PathVariable("id") String id) {
         String URL = "https://gorest.co.in/public/v1/users/"+id;
-        return restTemplate.getForObject(URL, GoRestResponse.class).getData();
+        try {
+            restTemplate.delete(URL);
+            return "deleted";
+        } catch (Exception e) {
+            e.getMessage();
+        }
     }
 
     @DeleteMapping("delete/{id}")
