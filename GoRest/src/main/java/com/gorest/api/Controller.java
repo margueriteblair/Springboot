@@ -42,6 +42,7 @@ public class Controller {
         } catch (Exception e) {
             e.getMessage();
         }
+        return "done";
     }
 
     @DeleteMapping("delete/{id}")
